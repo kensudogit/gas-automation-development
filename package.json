@@ -1,0 +1,14 @@
+{
+  "name": "gas-automation-development",
+  "private": true,
+  "description": "Skill template and local tests for Google Apps Script automations",
+  "scripts": {
+    "sync": "node scripts/sync-sales-logic.mjs",
+    "test": "node tests/sales.test.js",
+    "validate": "python tests/validate_skill.py",
+    "check": "npm run sync && npm test && npm run validate"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.5.0"
+  }
+}
