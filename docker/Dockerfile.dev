@@ -1,0 +1,20 @@
+# Skill 検証・Node テスト用（GAS 本体は Google 上で実行）
+FROM node:22-bookworm-slim
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends python3 python-is-python3 \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY package.json ./
+RUN npm install
+
+COPY examples ./examples
+COPY gas ./gas
+COPY scripts ./scripts
+COPY tests ./tests
+COPY references ./references
+COPY SKILL.md README.md ./
+
+CMD ["npm", "run", "check"]

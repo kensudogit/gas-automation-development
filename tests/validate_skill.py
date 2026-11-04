@@ -1,8 +1,10 @@
 from pathlib import Path
 import json
+import os
 import re
 
 root = Path(__file__).resolve().parents[1]
+expected_dir_name = os.environ.get('SKILL_DIR_NAME', root.name)
 skill = (root / 'SKILL.md').read_text(encoding='utf-8')
 assert skill.startswith('---\n'), 'YAML frontmatter must start on first line'
 parts = skill.split('---\n', 2)
@@ -10,7 +12,7 @@ assert len(parts) == 3, 'YAML frontmatter closing delimiter missing'
 header = parts[1]
 name = re.search(r'^name:\s*(\S+)\s*$', header, re.M)
 desc = re.search(r'^description:\s*(.+)$', header, re.M)
-assert name and name.group(1) == root.name, 'Skill name must match directory'
+assert name and name.group(1) == expected_dir_name, 'Skill name must match directory'
 assert re.fullmatch(r'[a-z0-9-]+', name.group(1))
 assert len(name.group(1)) <= 64
 assert desc and 0 < len(desc.group(1)) <= 1024

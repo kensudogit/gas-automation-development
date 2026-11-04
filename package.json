@@ -6,7 +6,9 @@
     "sync": "node scripts/sync-sales-logic.mjs",
     "test": "node tests/sales.test.js",
     "validate": "python tests/validate_skill.py",
-    "check": "npm run sync && npm test && npm run validate"
+    "check": "npm run sync && npm test && npm run validate",
+    "docker:check": "docker compose --profile check run --rm check",
+    "docker:api": "docker compose up api --build"
   },
   "devDependencies": {
     "@google/clasp": "^2.5.0"

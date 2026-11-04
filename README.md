@@ -15,12 +15,21 @@ npm run check
 3. スプレッドシートに `gas/` をデプロイ（clasp または手動コピー）
 4. `calculateSalesFromActiveSheet` を実行して OAuth を承認
 
+## Docker
+
+- **検証:** `npm run docker:check` または `docker compose --profile check run --rm check`
+- **FastAPI スタブ（GAS 連携練習）:** `npm run docker:api` → http://127.0.0.1:8000
+
+詳細: [references/docker-ja.md](references/docker-ja.md)（GAS から localhost へは直接届かない点を記載）
+
 ## リポジトリ構成
 
 | パス | 用途 |
 |------|------|
 | `SKILL.md` | Cursor / Claude Code 用 Skill 定義 |
 | `gas/` | 本番向けスターター（売上集計・ロック・日次トリガー・FastAPI クライアント雛形） |
+| `docker/` | Dockerfile（check / api） |
+| `docker-compose.yml` | ローカル API と検証コンテナ |
 | `examples/` | Skill 検証用の最小サンプル（読み取り専用 `Code.gs`） |
 | `references/` | 運用・セキュリティ・セットアップ |
 | `tests/` | Node / Python のパッケージ・ロジックテスト |

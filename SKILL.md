@@ -29,6 +29,7 @@ Use this skill for Google Apps Script development and maintenance.
 - Adapt `examples/Code.gs` and `examples/appsscript.json` for the minimal read-only sample.
 - Run `npm run check` (sync SalesLogic, Node tests, Python validate) before push.
 - Run `scripts/bootstrap.ps1` on Windows for first-time clasp setup via `npx clasp`.
+- Read `references/docker-ja.md` for Docker-based `npm run check` and local FastAPI stub (`docker compose up api`).
 
 ## Never
 - Claim an external deployment, mail send, or trigger creation succeeded without tool evidence.

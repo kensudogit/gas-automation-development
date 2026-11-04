@@ -1,0 +1,26 @@
+services:
+  # npm run check（sync + Node + Python validate）
+  check:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    environment:
+      SKILL_DIR_NAME: gas-automation-development
+    profiles:
+      - check
+
+  # GAS から POST する先のローカル FastAPI（開発用）
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      API_BEARER_TOKEN: ${API_BEARER_TOKEN:-dev-local-token}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s

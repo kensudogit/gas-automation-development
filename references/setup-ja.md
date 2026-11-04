@@ -65,4 +65,11 @@ npx clasp push
 npm run check
 ```
 
+Docker を使う場合: [docker-ja.md](docker-ja.md)
+
+```bash
+npm run docker:check
+npm run docker:api
+```
+
 Google API は叩きません。`examples/sales.js` の純粋ロジックのみ検証します。
