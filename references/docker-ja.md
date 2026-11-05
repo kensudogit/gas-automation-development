@@ -23,6 +23,8 @@ docker compose up api --build
 
 | URL | 用途 |
 |-----|------|
+| http://127.0.0.1:8000/ | サービス概要（ブラウザ確認用） |
+| http://127.0.0.1:8000/docs | Swagger UI |
 | http://127.0.0.1:8000/health | 死活 |
 | POST http://127.0.0.1:8000/api/v1/sales-snapshot | GAS `postSalesTotalToFastApi_` と同じパス |
 | GET http://127.0.0.1:8000/api/v1/last-snapshot | 直近 POST の確認（開発専用） |

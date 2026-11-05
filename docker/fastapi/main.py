@@ -37,9 +37,24 @@ def _verify_bearer(authorization: str | None) -> None:
         raise HTTPException(status_code=401, detail="Invalid or missing Bearer token")
 
 
+@app.get("/")
+def root() -> dict:
+    return {
+        "service": "gas-automation-development",
+        "title": app.title,
+        "version": app.version,
+        "docs": "/docs",
+        "health": "/health",
+        "endpoints": {
+            "POST /api/v1/sales-snapshot": "GAS FastApiClient と同じパス",
+            "GET /api/v1/last-snapshot": "直近 POST の確認（開発専用）",
+        },
+    }
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
-    return {"status": "ok"}
+    return {"status": "ok", "service": "gas-automation-development"}
 
 
 @app.get("/api/v1/last-snapshot")
